@@ -19,7 +19,7 @@ public class SqliteDAO {
 
     public SqliteDAO(Context c){
         context=c;
-        sqliteDatabase=new SqliteDatabase(context,"");
+        sqliteDatabase=new SqliteDatabase(context);
     }
 
     public void setCallback(SqliteDatabaseCallBack cabllback){
