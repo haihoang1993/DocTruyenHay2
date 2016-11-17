@@ -37,10 +37,15 @@ public class MainActivity extends AppCompatActivity
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        init();
         database=new SqliteDAO(getApplicationContext());
         database.setCallback(this);
 
+        database.getDanhSachTruyen("nt");
+
+    }
+
+    private void init(){
         initAppBar();
         lvTruyen=(ListView) findViewById(R.id.lvTruyen);
         adapter=new AdapterTruyen(getApplicationContext(),R.layout.item_truyen,listTruyen);
@@ -52,8 +57,6 @@ public class MainActivity extends AppCompatActivity
             }
         });
     }
-
-
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

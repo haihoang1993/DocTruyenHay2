@@ -5,6 +5,8 @@ import android.database.Cursor;
 
 import com.example.gd.doctruyenhay.object.ObjTruyen;
 
+import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class SqliteDAO {
@@ -20,6 +22,16 @@ public class SqliteDAO {
     public SqliteDAO(Context c){
         context=c;
         sqliteDatabase=new SqliteDatabase(context);
+        try {
+            sqliteDatabase.createDataBase();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        try {
+            sqliteDatabase.openDataBase();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     public void setCallback(SqliteDatabaseCallBack cabllback){
