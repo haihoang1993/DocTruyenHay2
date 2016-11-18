@@ -1,5 +1,6 @@
 package com.example.gd.doctruyenhay.database;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -182,6 +183,22 @@ public class SqliteDatabase extends SQLiteOpenHelper {
             e.printStackTrace();
         }
         return list;
+    }
+
+    public int setLikeTruyen(String idTruyen, int like) {
+        int res = -1;
+        try {
+            openDataBase();
+            ContentValues ct = new ContentValues();
+            ct.put("yeu_thich", like);
+            res = myDataBase.update("Truyen", ct, "id_truyen", new String[]{idTruyen + ""});
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            close();
+        }
+        return res;
     }
 
 }

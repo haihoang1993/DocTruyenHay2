@@ -37,7 +37,7 @@ public class GioithieuTruyenActivity extends AppCompatActivity implements View.O
     private void setActionBar() {
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
-        actionBar.setTitle(mTruyen.tenTruyen.toString());
+        actionBar.setTitle("");
     }
 
     private void initView() {

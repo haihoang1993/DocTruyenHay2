@@ -14,7 +14,7 @@ public class DocTruyenActivity extends AppCompatActivity {
     float size;
     ObjTruyen mTruyen;
     private TextView tvNoiDung;
-    private ImageView btnZoomOut, btnZoomIn, imgBtnBack, imgBtnNext;
+    private ImageView btnZoomOut, btnZoomIn, imgBtnBack, imgBtnNext, btnLike;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,9 +22,11 @@ public class DocTruyenActivity extends AppCompatActivity {
         setContentView(R.layout.activity_doc_truyen);
         mTruyen = (ObjTruyen) getIntent().getSerializableExtra("truyen");
         initView();
+        Like();
     }
 
     private void initView() {
+        btnLike = (ImageView) findViewById(R.id.btnLike);
         tvNoiDung = (TextView) findViewById(R.id.tvNoiDung);
         btnZoomOut = (ImageView) findViewById(R.id.btnZoomOut);
         btnZoomIn = (ImageView) findViewById(R.id.btnZoomIn);
@@ -72,6 +74,20 @@ public class DocTruyenActivity extends AppCompatActivity {
         tvNoiDung.setText(mTruyen.listChuong.get(mTruyen.mIndexChuong ).noi_dung);
         getSupportActionBar().setTitle(mTruyen.listChuong.get(mTruyen.mIndexChuong).tenChuong);
         tvNoiDung.setText(mTruyen.listChuong.get(mTruyen.mIndexChuong).noi_dung);
+    }
+
+    private void Like() {
+        if (mTruyen.yeuThich) {
+            btnLike.setImageResource(R.mipmap.ic_g);
+            btnLike.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+                }
+            });
+            return;
+        }
+        btnLike.setImageResource(R.mipmap.ic_lag);
     }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

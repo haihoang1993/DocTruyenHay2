@@ -54,6 +54,12 @@
             app:srcCompat="@drawable/zoom_out" />
 
         <ImageView
+            android:id="@+id/btnLike"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:src="@mipmap/ic_g" />
+        <ImageView
             android:id="@+id/btnZoomIn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

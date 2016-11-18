@@ -15,6 +15,7 @@ public class ObjTruyen implements Serializable {
     public String moTa;
     public String tacGia;
     public String idTheloai;
+    public boolean yeuThich;
 
     public int mIndexChuong;
     public ArrayList<ObjChuong> listChuong = new ArrayList<>();
@@ -33,6 +34,8 @@ public class ObjTruyen implements Serializable {
         this.moTa = cursor.getString(2);
         this.tacGia = cursor.getString(3);
         this.idTheloai = cursor.getString(4);
+        if (cursor.getInt(6) != -1) yeuThich = true;
+        else yeuThich = false;
     }
 
     public ObjTruyen() {
