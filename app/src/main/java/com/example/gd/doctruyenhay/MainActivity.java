@@ -3,23 +3,23 @@ package com.example.gd.doctruyenhay;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v7.app.ActionBar;
-import android.view.View;
 import android.support.design.widget.NavigationView;
+import android.support.design.widget.Snackbar;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.example.gd.doctruyenhay.adapter.AdapterTruyen;
 import com.example.gd.doctruyenhay.database.SqliteDAO;
-import com.example.gd.doctruyenhay.database.SqliteDatabase;
 import com.example.gd.doctruyenhay.database.SqliteDatabaseCallBack;
 import com.example.gd.doctruyenhay.object.ObjTruyen;
 
@@ -40,7 +40,6 @@ public class MainActivity extends AppCompatActivity
         init();
         database=new SqliteDAO(getApplicationContext());
         database.setCallback(this);
-
         database.getDanhSachTruyen("nt");
 
     }
@@ -49,15 +48,18 @@ public class MainActivity extends AppCompatActivity
         initAppBar();
         lvTruyen=(ListView) findViewById(R.id.lvTruyen);
         adapter=new AdapterTruyen(getApplicationContext(),R.layout.item_truyen,listTruyen);
+        Log.d("aaa",listTruyen.toString());
         lvTruyen.setAdapter(adapter);
         lvTruyen.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Intent intent =new Intent(getApplicationContext(),DsChuongActivity.class);
+                Intent intent =new Intent(getApplicationContext(),GioithieuTruyenActivity.class);
+                Log.d("truyen",listTruyen.get(i).toString());
                 intent.putExtra("truyen",listTruyen.get(i));
                 startActivity(intent);
             }
         });
+
     }
     @Override
     public void onBackPressed() {
