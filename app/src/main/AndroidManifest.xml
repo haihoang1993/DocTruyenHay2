@@ -21,11 +21,9 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".DsChuongActivity"
-            android:label="Yeu em tu cai nhin dau tien" />
+            android:name=".DsChuongActivity" />
         <activity
-            android:name=".DocTruyenActivity"
-            android:label="Chuong 1" />
+            android:name=".DocTruyenActivity" />
         <activity android:name=".DemoActivity" />
         <activity android:name=".GioithieuTruyenActivity"></activity>
     </application>

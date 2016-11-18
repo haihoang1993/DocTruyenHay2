@@ -17,36 +17,42 @@ import com.example.gd.doctruyenhay.object.ObjTruyen;
 import java.util.ArrayList;
 
 public class DsChuongActivity extends AppCompatActivity {
-    ArrayList<ObjChuong> listCHuong=new ArrayList<>();
+    ArrayList<ObjChuong> listCHuong = new ArrayList<>();
     AdapterChuong adapter;
     SqliteDAO database;
 
     ObjTruyen mTruyen;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ds_chuong);
-        setActionBar();
-        database=new SqliteDAO(getApplicationContext());
-        mTruyen=(ObjTruyen) getIntent().getSerializableExtra("truyen");
+        mTruyen = (ObjTruyen) getIntent().getSerializableExtra("truyen");
 
-        listCHuong= database.getChongTruyen(mTruyen.id);
-        mTruyen.listChuong=listCHuong;
-        adapter=new AdapterChuong(this,android.R.layout.simple_list_item_1,listCHuong);
-        ListView lv=(ListView) findViewById(R.id.lvChuong);
+        setActionBar();
+        database = new SqliteDAO(getApplicationContext());
+
+        listCHuong = database.getChongTruyen(mTruyen.id);
+        mTruyen.listChuong = listCHuong;
+        adapter = new AdapterChuong(this, android.R.layout.simple_list_item_1, listCHuong);
+        ListView lv = (ListView) findViewById(R.id.lvChuong);
         lv.setAdapter(adapter);
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                startActivity(new Intent(getApplicationContext(),DocTruyenActivity.class));
+                mTruyen.mIndexChuong = i;
+                Intent intent = new Intent(getApplicationContext(), DocTruyenActivity.class);
+                intent.putExtra("truyen", mTruyen);
+
+                startActivity(intent);
             }
         });
     }
 
-    private void setActionBar(){
-        ActionBar actionBar=getSupportActionBar();
+    private void setActionBar() {
+        ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
-        actionBar.setTitle("");
+        actionBar.setTitle(mTruyen.tenTruyen.toString());
     }
 
     @Override

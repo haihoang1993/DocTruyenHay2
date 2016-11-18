@@ -16,7 +16,9 @@ public class ObjTruyen implements Serializable {
     public String tacGia;
     public String idTheloai;
 
-    public ArrayList<ObjChuong> listChuong=new ArrayList<>();
+    public int mIndexChuong;
+    public ArrayList<ObjChuong> listChuong = new ArrayList<>();
+
     public ObjTruyen(String id, String tenTruyen, String moTa, String tacGia, String idTheloai) {
         this.id = id;
         this.tenTruyen = tenTruyen;

@@ -2,7 +2,9 @@ package com.example.gd.doctruyenhay;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -26,7 +28,16 @@ public class GioithieuTruyenActivity extends AppCompatActivity implements View.O
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gioithieu_truyen);
+
+        mTruyen = (ObjTruyen) getIntent().getSerializableExtra("truyen");
+        setActionBar();
         initView();
+    }
+
+    private void setActionBar() {
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setTitle(mTruyen.tenTruyen.toString());
     }
 
     private void initView() {
@@ -36,7 +47,6 @@ public class GioithieuTruyenActivity extends AppCompatActivity implements View.O
         btnBatDauDoc = (Button) findViewById(R.id.btnBatDauDoc);
         tvNoidung = (TextView) findViewById(R.id.tvNoidung);
 
-        mTruyen = (ObjTruyen) getIntent().getSerializableExtra("truyen");
         tvTenTruyen.setText(mTruyen.tenTruyen.toString());
         tvTenTacGia.setText(mTruyen.tacGia.toString());
         tvNoidung.setText(mTruyen.moTa);
@@ -52,6 +62,18 @@ public class GioithieuTruyenActivity extends AppCompatActivity implements View.O
                 intent.putExtra("truyen", mTruyen);
                 startActivity(intent);
                 break;
+        }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                // app icon in action bar clicked; goto parent activity.
+                this.finish();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
         }
     }
 }
