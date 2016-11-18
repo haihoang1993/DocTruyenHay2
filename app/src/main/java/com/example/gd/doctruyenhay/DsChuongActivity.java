@@ -32,7 +32,7 @@ public class DsChuongActivity extends AppCompatActivity {
 
         listCHuong= database.getChongTruyen(mTruyen.id);
         mTruyen.listChuong=listCHuong;
-        adapter=new AdapterChuong(getApplicationContext(),android.R.layout.simple_list_item_1,listCHuong);
+        adapter=new AdapterChuong(this,android.R.layout.simple_list_item_1,listCHuong);
         ListView lv=(ListView) findViewById(R.id.lvChuong);
         lv.setAdapter(adapter);
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
