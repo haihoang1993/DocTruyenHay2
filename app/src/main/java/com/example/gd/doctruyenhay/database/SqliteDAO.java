@@ -3,6 +3,7 @@ package com.example.gd.doctruyenhay.database;
 import android.content.Context;
 import android.database.Cursor;
 
+import com.example.gd.doctruyenhay.object.ObjChuong;
 import com.example.gd.doctruyenhay.object.ObjTruyen;
 
 import java.io.IOException;
@@ -16,8 +17,6 @@ public class SqliteDAO {
     public SqliteDAO(){
 
     }
-
-
 
     public SqliteDAO(Context c){
         context=c;
@@ -48,5 +47,8 @@ public class SqliteDAO {
         }
     }
 
+    public ArrayList<ObjChuong> getChongTruyen(String idTruyen){
+        return sqliteDatabase.getDanhSachChuong(idTruyen);
 
+    }
 }

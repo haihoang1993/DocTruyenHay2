@@ -1,6 +1,7 @@
 package com.example.gd.doctruyenhay;
 
 import android.content.Intent;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -10,7 +11,9 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.example.gd.doctruyenhay.adapter.AdapterChuong;
+import com.example.gd.doctruyenhay.database.SqliteDAO;
 import com.example.gd.doctruyenhay.object.ObjChuong;
+import com.example.gd.doctruyenhay.object.ObjTruyen;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,12 +21,20 @@ import java.util.List;
 public class DsChuongActivity extends AppCompatActivity {
     ArrayList<ObjChuong> listCHuong=new ArrayList<>();
     AdapterChuong adapter;
+    SqliteDAO database;
+
+    ObjTruyen mTruyen;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ds_chuong);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        setData();
+        setActionBar();
+        database=new SqliteDAO(getApplicationContext());
+        mTruyen=(ObjTruyen) getIntent().getSerializableExtra("truyen");
+
+
+
+        listCHuong= database.getChongTruyen(mTruyen.id);
         adapter=new AdapterChuong(getApplicationContext(),android.R.layout.simple_list_item_1,listCHuong);
         ListView lv=(ListView) findViewById(R.id.lvChuong);
         lv.setAdapter(adapter);
@@ -34,25 +45,13 @@ public class DsChuongActivity extends AppCompatActivity {
             }
         });
     }
-    public void setData(){
-        listCHuong.add(new ObjChuong(1,"1"));
-        listCHuong.add(new ObjChuong(1,"1"));
-        listCHuong.add(new ObjChuong(1,"1"));
-        listCHuong.add(new ObjChuong(1,"1"));
-        listCHuong.add(new ObjChuong(1,"1"));
-        listCHuong.add(new ObjChuong(1,"1"));
-        listCHuong.add(new ObjChuong(1,"1"));
-        listCHuong.add(new ObjChuong(1,"1"));
-        listCHuong.add(new ObjChuong(1,"1"));
-        listCHuong.add(new ObjChuong(1,"1"));
-        listCHuong.add(new ObjChuong(1,"1"));
-        listCHuong.add(new ObjChuong(1,"1"));
-        listCHuong.add(new ObjChuong(1,"1"));
-        listCHuong.add(new ObjChuong(1,"1"));
-        listCHuong.add(new ObjChuong(1,"1"));
-        listCHuong.add(new ObjChuong(1,"1"));
 
+    private void setActionBar(){
+        ActionBar actionBar=getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setTitle("");
     }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {

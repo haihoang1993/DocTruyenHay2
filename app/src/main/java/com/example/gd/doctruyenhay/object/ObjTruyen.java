@@ -2,11 +2,13 @@ package com.example.gd.doctruyenhay.object;
 
 import android.database.Cursor;
 
+import java.io.Serializable;
+
 /**
  * Created by funkoigame on 21/10/2016.
  */
 
-public class ObjTruyen {
+public class ObjTruyen implements Serializable {
     public String id;
     public String tenTruyen;
     public String moTa;

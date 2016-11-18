@@ -34,7 +34,7 @@ public class AdapterChuong extends ArrayAdapter<ObjChuong> {
         ObjChuong truyen=mListTruyen.get(position);
 
 
-        tv.setText("Chuong "+(position+1));
+        tv.setText("Chuong "+(position+1)+":"+truyen.tenChuong);
 //        tv.setText(truyen.tenChuong);
 
         return rowView;

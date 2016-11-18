@@ -53,7 +53,9 @@ public class MainActivity extends AppCompatActivity
         lvTruyen.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                startActivity(new Intent(getApplicationContext(),DsChuongActivity.class));
+                Intent intent =new Intent(getApplicationContext(),DsChuongActivity.class);
+                intent.putExtra("truyen",listTruyen.get(i));
+                startActivity(intent);
             }
         });
     }

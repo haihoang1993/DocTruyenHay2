@@ -7,6 +7,9 @@ import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
+import com.example.gd.doctruyenhay.object.ObjChuong;
+import com.example.gd.doctruyenhay.object.ObjTruyen;
+
 import java.io.EOFException;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -14,6 +17,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 
 public class SqliteDatabase extends SQLiteOpenHelper {
@@ -126,7 +130,7 @@ public class SqliteDatabase extends SQLiteOpenHelper {
 
         //Open the database
         String myPath = DB_PATH + DB_NAME;
-        myDataBase = SQLiteDatabase.openDatabase(myPath, null, SQLiteDatabase.OPEN_READONLY);
+        myDataBase = SQLiteDatabase.openDatabase(myPath, null, SQLiteDatabase.OPEN_READWRITE);
 
     }
 
@@ -157,11 +161,27 @@ public class SqliteDatabase extends SQLiteOpenHelper {
     }
     public Cursor getDsTruyen(String idLoai){
       //  openDB();
-        String query = "SELECT * FROM Truyen where id_the_loai=?";
-        Cursor cursor = myDataBase.rawQuery(query, new String[]{idLoai});
+        String query = "SELECT * FROM Truyen where id_the_loai=?";    Cursor cursor = myDataBase.rawQuery(query, new String[]{idLoai});
      ///   closeDB();
         return cursor;
     }
 
+    public ArrayList<ObjChuong> getDanhSachChuong(String idTruyen){
+        ArrayList<ObjChuong> list=new ArrayList<>();
+        String query = "SELECT * FROM Chuong where id_truyen=?";
+        try {
+            openDataBase();
+            Cursor cursor = myDataBase.rawQuery(query, new String[]{idTruyen});
+            if(cursor.moveToFirst()){
+                do{
+                    ObjChuong chuong=new ObjChuong(cursor);
+                    list.add(chuong);
+                }while (cursor.moveToNext());
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
 
 }
