@@ -7,22 +7,6 @@
 
     android:orientation="vertical"
     tools:context="com.example.gd.doctruyenhay.DsChuongActivity">
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/tvTenTr"
-        android:text="Tac giả"
-        android:textSize="20dp"
-        android:gravity="center"
-        android:textStyle="bold"
-        android:textColor="#ff0000"
-     />
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/imgAvataTruyen"
-        android:src="@mipmap/ic_launcher"
-        />
 
     <ListView
         android:layout_width="match_parent"
