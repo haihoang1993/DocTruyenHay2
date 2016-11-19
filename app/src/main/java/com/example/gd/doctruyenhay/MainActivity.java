@@ -40,8 +40,7 @@ public class MainActivity extends AppCompatActivity
         init();
         database=new SqliteDAO(getApplicationContext());
         database.setCallback(this);
-        database.getDanhSachTruyen("nt");
-
+        getTruyen("nt");
     }
 
     private void init(){
@@ -59,8 +58,9 @@ public class MainActivity extends AppCompatActivity
                 startActivity(intent);
             }
         });
-
     }
+
+
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -69,6 +69,11 @@ public class MainActivity extends AppCompatActivity
         } else {
             super.onBackPressed();
         }
+    }
+
+    private void getTruyen(String idLoai) {
+        listTruyen.clear();
+        database.getDanhSachTruyen(idLoai);
     }
 
     @Override
@@ -99,17 +104,19 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item_truyen clicks here.
         int id = item.getItemId();
 
-//        if (id == R.id.nav_camera) {
-//            // Handle the camera action
-//        } else if (id == R.id.nav_gallery) {
-//
-//        } else if (id == R.id.nav_slideshow) {
-//
-//        } else if (id == R.id.nav_manage) {
-//
-//        } else if (id == R.id.nav_share) {
-//
-//        } else if (id == R.id.nav_send) {
+        if (id == R.id.menu_ngon_tinh) {
+            // Handle the camera action
+            getTruyen("nt");
+        } else if (id == R.id.menu_kiem_hiep) {
+            getTruyen("kh");
+        } else if (id == R.id.menu_tien_hiep) {
+            getTruyen("th");
+        } else if (id == R.id.menu_vong_du) {
+            getTruyen("vd");
+        } else if (id == R.id.menu_yeuthich) {
+            startActivity(new Intent(getApplicationContext(), ListYeuThichActivity.class));
+        }
+// else if (id == R.id.nav_send) {
 //
 //        }
 

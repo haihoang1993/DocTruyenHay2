@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.gd.doctruyenhay.database.SqliteDAO;
 import com.example.gd.doctruyenhay.object.ObjTruyen;
 
 public class DocTruyenActivity extends AppCompatActivity {
@@ -16,10 +17,12 @@ public class DocTruyenActivity extends AppCompatActivity {
     private TextView tvNoiDung;
     private ImageView btnZoomOut, btnZoomIn, imgBtnBack, imgBtnNext, btnLike;
 
+    SqliteDAO sqliteDAO;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_doc_truyen);
+        sqliteDAO = new SqliteDAO(getApplicationContext());
         mTruyen = (ObjTruyen) getIntent().getSerializableExtra("truyen");
         initView();
         Like();
@@ -33,7 +36,7 @@ public class DocTruyenActivity extends AppCompatActivity {
         imgBtnBack = (ImageView) findViewById(R.id.imgBtnBack);
         imgBtnNext = (ImageView) findViewById(R.id.imgBtnNext);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle(mTruyen.listChuong.get(mTruyen.mIndexChuong).tenChuong);
+        getSupportActionBar().setTitle("Chương " + (mTruyen.mIndexChuong + 1) + ":" + mTruyen.listChuong.get(mTruyen.mIndexChuong).tenChuong);
         tvNoiDung.setText(mTruyen.listChuong.get(mTruyen.mIndexChuong).noi_dung);
 
         size = tvNoiDung.getTextSize();
@@ -72,7 +75,7 @@ public class DocTruyenActivity extends AppCompatActivity {
 
     private void show(){
         tvNoiDung.setText(mTruyen.listChuong.get(mTruyen.mIndexChuong ).noi_dung);
-        getSupportActionBar().setTitle(mTruyen.listChuong.get(mTruyen.mIndexChuong).tenChuong);
+        getSupportActionBar().setTitle("Chương " + (mTruyen.mIndexChuong + 1) + ":" + mTruyen.listChuong.get(mTruyen.mIndexChuong).tenChuong);
         tvNoiDung.setText(mTruyen.listChuong.get(mTruyen.mIndexChuong).noi_dung);
     }
 
@@ -82,12 +85,26 @@ public class DocTruyenActivity extends AppCompatActivity {
             btnLike.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-
+                    if (sqliteDAO.updateLikeTruyen(mTruyen.id, -1) != -1) {
+                        mTruyen.yeuThich = false;
+                        Like();
+                    }
+                    ;
                 }
             });
             return;
         }
         btnLike.setImageResource(R.mipmap.ic_lag);
+        btnLike.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (sqliteDAO.updateLikeTruyen(mTruyen.id, 1) != -1) {
+                    mTruyen.yeuThich = true;
+                    Like();
+                }
+                ;
+            }
+        });
     }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

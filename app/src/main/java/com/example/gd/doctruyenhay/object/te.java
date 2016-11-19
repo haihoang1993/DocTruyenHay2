@@ -5,9 +5,7 @@ import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.widget.ListView;
 
-/**
- * Created by funkoigame on 11/11/2016.
- */
+
 public class te extends ListView {
     private int mPosition;
     public te(Context context) {

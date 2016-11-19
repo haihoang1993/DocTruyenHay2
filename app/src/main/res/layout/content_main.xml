@@ -52,7 +52,7 @@
                     android:background="#ffffff"
                     android:paddingBottom="8dp"
                     android:paddingTop="8dp"
-                    android:text="Yeu em tu cai nhin dau tien  "
+                    android:text="Đang đọc:Yeu em tu cai nhin dau tien  "
 
                     android:textColor="#ff0000"
                     android:textSize="15dp"

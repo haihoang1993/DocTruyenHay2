@@ -20,12 +20,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".DsChuongActivity" />
-        <activity
-            android:name=".DocTruyenActivity" />
+        <activity android:name=".DsChuongActivity" />
+        <activity android:name=".DocTruyenActivity" />
         <activity android:name=".DemoActivity" />
-        <activity android:name=".GioithieuTruyenActivity"></activity>
+        <activity android:name=".GioithieuTruyenActivity" />
+        <activity android:name=".ListYeuThichActivity"></activity>
     </application>
 
 </manifest>

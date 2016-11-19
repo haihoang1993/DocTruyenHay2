@@ -162,9 +162,32 @@ public class SqliteDatabase extends SQLiteOpenHelper {
     }
     public Cursor getDsTruyen(String idLoai){
       //  openDB();
-        String query = "SELECT * FROM Truyen where id_the_loai=?";    Cursor cursor = myDataBase.rawQuery(query, new String[]{idLoai});
+        String query = "SELECT * FROM Truyen where id_the_loai=?";
+        Cursor cursor = myDataBase.rawQuery(query, new String[]{idLoai});
      ///   closeDB();
         return cursor;
+    }
+
+    public ArrayList<ObjTruyen> getYeuThich() {
+        ArrayList<ObjTruyen> list = new ArrayList<>();
+        try {
+            openDataBase();
+            String query = "SELECT * FROM Truyen where yeu_thich>-1";
+            Cursor cursor = myDataBase.rawQuery(query, null);
+            if (cursor.moveToFirst()) {
+                do {
+                    ObjTruyen truyen = new ObjTruyen(cursor);
+                    list.add(truyen);
+                    Log.d("flog", truyen.tenTruyen);
+                } while (cursor.moveToNext());
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            close();
+        }
+
+        return list;
     }
 
     public ArrayList<ObjChuong> getDanhSachChuong(String idTruyen){
@@ -191,7 +214,7 @@ public class SqliteDatabase extends SQLiteOpenHelper {
             openDataBase();
             ContentValues ct = new ContentValues();
             ct.put("yeu_thich", like);
-            res = myDataBase.update("Truyen", ct, "id_truyen", new String[]{idTruyen + ""});
+            res = myDataBase.update("Truyen", ct, "id_truyen=?", new String[]{idTruyen + ""});
 
         } catch (SQLException e) {
             e.printStackTrace();

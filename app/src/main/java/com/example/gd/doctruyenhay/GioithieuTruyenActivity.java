@@ -1,6 +1,9 @@
 package com.example.gd.doctruyenhay;
 
 import android.content.Intent;
+import android.content.res.AssetManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -12,6 +15,8 @@ import android.widget.TextView;
 
 import com.example.gd.doctruyenhay.object.ObjTruyen;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 
 public class GioithieuTruyenActivity extends AppCompatActivity implements View.OnClickListener {
@@ -32,6 +37,19 @@ public class GioithieuTruyenActivity extends AppCompatActivity implements View.O
         mTruyen = (ObjTruyen) getIntent().getSerializableExtra("truyen");
         setActionBar();
         initView();
+        setImgae();
+    }
+
+    private void setImgae() {
+        AssetManager assetManager = getAssets();
+        InputStream is = null;
+        try {
+            is = assetManager.open("img/" + mTruyen.id + ".jpg");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Bitmap bitmap = BitmapFactory.decodeStream(is);
+        imgAvataTruyen.setImageBitmap(bitmap);
     }
 
     private void setActionBar() {

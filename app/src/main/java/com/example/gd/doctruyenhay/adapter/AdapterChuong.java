@@ -12,9 +12,6 @@ import com.example.gd.doctruyenhay.object.ObjChuong;
 
 import java.util.ArrayList;
 
-/**
- * Created by funkoigame on 21/10/2016.
- */
 
 public class AdapterChuong extends ArrayAdapter<ObjChuong> {
     Context mContext;

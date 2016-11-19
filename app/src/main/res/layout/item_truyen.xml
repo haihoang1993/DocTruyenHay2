@@ -26,6 +26,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:src="@mipmap/ic_launcher"
+            android:id="@+id/imgItemTruyen"
             />
 
         <TextView
@@ -41,7 +42,7 @@
             android:id="@+id/tvItemTruyen" />
 
         <FrameLayout
-            android:background="#69482a2a"
+            android:background="#69c29292"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 

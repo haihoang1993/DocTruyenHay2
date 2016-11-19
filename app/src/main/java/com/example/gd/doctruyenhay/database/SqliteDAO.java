@@ -58,8 +58,17 @@ public class SqliteDAO {
         }
     }
 
+
+    public ArrayList<ObjTruyen> getYeuTHich() {
+        return sqliteDatabase.getYeuThich();
+    }
+
     public ArrayList<ObjChuong> getChongTruyen(String idTruyen) {
         return sqliteDatabase.getDanhSachChuong(idTruyen);
 
+    }
+
+    public int updateLikeTruyen(String idTruyen, int like) {
+        return sqliteDatabase.setLikeTruyen(idTruyen, like);
     }
 }

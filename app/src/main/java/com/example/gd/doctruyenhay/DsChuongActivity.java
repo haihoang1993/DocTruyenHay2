@@ -1,6 +1,9 @@
 package com.example.gd.doctruyenhay;
 
 import android.content.Intent;
+import android.content.res.AssetManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -14,6 +17,8 @@ import com.example.gd.doctruyenhay.database.SqliteDAO;
 import com.example.gd.doctruyenhay.object.ObjChuong;
 import com.example.gd.doctruyenhay.object.ObjTruyen;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 
 public class DsChuongActivity extends AppCompatActivity {
@@ -54,6 +59,7 @@ public class DsChuongActivity extends AppCompatActivity {
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setTitle(mTruyen.tenTruyen.toString());
     }
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
